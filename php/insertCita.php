@@ -1,14 +1,14 @@
 <?php
     require_once 'connect.php';
-    $db = 'tareas';
+    $db = 'Citas';
 
     $conexion = conectar($db);
     $parametros = array(
-        ":Titulo"=>$_POST['Titulo'],
+        ":Cliente"=>$_POST['Cliente'],
         ":Descripcion"=>$_POST['Descripcion'],
-        ":Hecha"=>$_POST['Hecha']
+        ":Fecha"=>$_POST['Fecha']
     );
-    $sql = "INSERT INTO `ttareas` ( `Titulo`, `Descripcion`, `Hecha`) VALUES (:Titulo, :Descripcion, :Hecha)";
+    $sql = "INSERT INTO `TCitas` ( `Cliente`, `Descripcion`, `Fecha`) VALUES (:Cliente, :Descripcion, :Fecha)";
     $pdo = $conexion->prepare($sql);
     $pdo->execute($parametros);
 ?>

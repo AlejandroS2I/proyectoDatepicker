@@ -1,8 +1,8 @@
 <?php
     require_once 'connect.php';
-    $db = 'Tareas';
+    $db = 'Citas';
     $conexion = conectar($db);
-    $sql = "SELECT * FROM TTareas";
+    $sql = "SELECT * FROM TCitas";
     $pdo = $conexion->prepare($sql);
     $pdo->execute();
 

@@ -1,11 +1,11 @@
 <?php
 if (isset($_POST['id'])) {
     require_once 'connect.php';
-    $db = 'tareas';
+    $db = 'Citas';
 
     $conexion = conectar($db);
-    $parametros = array(":id" => $_POST['id']);
-    $sql = "DELETE FROM ttareas WHERE ID = :id";
+    $parametros = array(":ID" => $_POST['ID']);
+    $sql = "DELETE FROM TCitas WHERE ID = :ID";
     $pdo = $conexion->prepare($sql);
     $pdo->execute($parametros);
 }
