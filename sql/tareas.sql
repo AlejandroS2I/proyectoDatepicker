@@ -1,0 +1,12 @@
+DROP DATABASE IF EXISTS Citas;
+CREATE DATABASE Citas;
+
+USE Citas;
+
+CREATE TABLE TCitas (
+	ID INT AUTO_INCREMENT,
+	Fecha DATE,
+	Cliente VARCHAR(50),
+	Descripcion TEXT,
+	PRIMARY KEY(ID)
+);
