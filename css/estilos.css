@@ -71,9 +71,48 @@ button:focus, input[type="submit"]:focus, input[type="reset"]:focus, input[type=
 }
 
 .ui-datepicker {
-	width: 700px;
-	height: 500px;
+	width: 180px;
+	height: 200px;
 	border: 1px solid;
+	padding: 5px;
+}
+#ui-datepicker-div{
+	display: none;
+}
+.ui-datepicker .ui-datepicker-header{
+	text-align: center;
+}
+.ui-datepicker .ui-datepicker-header  .ui-datepicker-prev{
+	float: left;
+}
+.ui-datepicker .ui-datepicker-header  .ui-datepicker-next{
+	margin-right: 0px;
+}
+.ui-datepicker .ui-datepicker-header .ui-datepicker-title {
+	background:var(--aqua-dark) ;
+}
+.ui-datepicker .ui-datepicker-header  .ui-datepicker-prev  .ui-icon {
+	background-image: url(../img/anterior.png);
+}
+.ui-datepicker .ui-datepicker-header  .ui-datepicker-next  .ui-icon {
+	background-image: url(../img/avance-rapido.png);
+}
+.ui-datepicker .ui-datepicker-calendar a {
+	text-decoration: none;
+	text-align: left;
+}
+.ui-datepicker .ui-datepicker-calendar td {
+	border-bottom: 2px solid;
+}
+.ui-datepicker table{
+	border: 1px solid;
+	padding: 5px;
+}
+.ui-datepicker table tbody tr th, .ui-datepicker table thead tr td{
+	margin: 5px;
+}
+.ui-datepicker table tbody tr th span{
+	
 }
 
 /* tareas */
