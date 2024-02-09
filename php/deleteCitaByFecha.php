@@ -1,5 +1,5 @@
 <?php
-if (isset($_POST['id'])) {
+if (isset($_POST['Fecha'])) {
     require_once 'connect.php';
     $db = 'Citas';
 

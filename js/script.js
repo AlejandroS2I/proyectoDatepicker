@@ -13,9 +13,9 @@ $(document).ready(() => {
                                                 inline: true,
                                                 showOtherMonths: true,
                                                 onSelect: function(fecha) {
-                                                        fecha = fecha.split("/");
-                                                        fecha = `${fecha[2]}-${fecha[1]}-${fecha[0]}`;
-                                                        _fecha = new Date(fecha + 'T00:00:00');
+                                                        let arrayFecha = fecha.split("/");
+                                                        let fechaFormateada = `${arrayFecha[2]}-${arrayFecha[1]}-${arrayFecha[0]}`;
+                                                        let _fecha = new Date(fechaFormateada + 'T00:00:00');
                                                         $('#formReservar').hide();
                                                         $('#formBorrar').hide();
                                                         if ( citas[_fecha] ) {
@@ -23,7 +23,7 @@ $(document).ready(() => {
                                                                 $('#formBorrar').on('submit', function(e) {
                                                                         e.preventDefault();
                                                                         // Hacer validacion
-                                                                        liberarCita(fecha);
+                                                                        liberarCita(fechaFormateada);
                                                                         $('#formBorrar').off('submit');
                                                                         $('#formBorrar').hide();
                                                                 });
@@ -33,7 +33,7 @@ $(document).ready(() => {
                                                                         e.preventDefault();
                                                                         // Hacer validacion
                                                                         fecha = fecha.split("/");
-                                                                        reservarCita($('#cliente').val(), $('#descripcion').val(), fecha);
+                                                                        reservarCita($('#cliente').val(), $('#descripcion').val(), fechaFormateada);
                                                                         $('#formReservar').trigger('reset');
                                                                         $('#formReservar').off('submit');
                                                                         $('#formReservar').hide();
@@ -128,6 +128,7 @@ function seleccionarCitas() {
 // Función para resaltar las citas recibidas por la BBDD
 function resaltarCitas(_citas){
         // Iteramos por toda la lista que nos ha devuelto el servidor
+        citas = [];
         _citas.forEach((cita) => {
                 citas[ new Date(cita.Fecha + 'T00:00:00') ] = new Date(cita.Fecha + 'T00:00:00').toString();
         });
