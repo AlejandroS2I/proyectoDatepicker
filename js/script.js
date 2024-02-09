@@ -13,7 +13,9 @@ $(document).ready(() => {
                                                 inline: true,
                                                 showOtherMonths: true,
                                                 onSelect: function(fecha) {
-                                                        _fecha = new Date(fecha);
+                                                        fecha = fecha.split("/");
+                                                        fecha = `${fecha[2]}-${fecha[1]}-${fecha[0]}`;
+                                                        _fecha = new Date(fecha + 'T00:00:00');
                                                         $('#formReservar').hide();
                                                         $('#formBorrar').hide();
                                                         if ( citas[_fecha] ) {
@@ -21,8 +23,7 @@ $(document).ready(() => {
                                                                 $('#formBorrar').on('submit', function(e) {
                                                                         e.preventDefault();
                                                                         // Hacer validacion
-                                                                        fecha = fecha.split("/");
-                                                                        liberarCita(`${fecha[2]}-${fecha[1]}-${fecha[0]}`);
+                                                                        liberarCita(fecha);
                                                                         $('#formBorrar').off('submit');
                                                                         $('#formBorrar').hide();
                                                                 });
@@ -32,7 +33,7 @@ $(document).ready(() => {
                                                                         e.preventDefault();
                                                                         // Hacer validacion
                                                                         fecha = fecha.split("/");
-                                                                        reservarCita($('#cliente').val(), $('#descripcion').val(), `${fecha[2]}-${fecha[1]}-${fecha[0]}`);
+                                                                        reservarCita($('#cliente').val(), $('#descripcion').val(), fecha);
                                                                         $('#formReservar').trigger('reset');
                                                                         $('#formReservar').off('submit');
                                                                         $('#formReservar').hide();
