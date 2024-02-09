@@ -13,31 +13,19 @@ $(document).ready(() => {
                                                 inline: true,
                                                 showOtherMonths: true,
                                                 onSelect: function(fecha) {
-                                                        let arrayFecha = fecha.split("/");
-                                                        let fechaFormateada = `${arrayFecha[2]}-${arrayFecha[1]}-${arrayFecha[0]}`;
-                                                        let _fecha = new Date(fechaFormateada + 'T00:00:00');
+                                                        // Escondemos los formularios
                                                         $('#formReservar').hide();
                                                         $('#formBorrar').hide();
-                                                        if ( citas[_fecha] ) {
-                                                                $('#formBorrar').show();
-                                                                $('#formBorrar').on('submit', function(e) {
-                                                                        e.preventDefault();
-                                                                        // Hacer validacion
-                                                                        liberarCita(fechaFormateada);
-                                                                        $('#formBorrar').off('submit');
-                                                                        $('#formBorrar').hide();
-                                                                });
+
+                                                        // Tratamos la fecha
+                                                        fecha = fecha.split("/");
+                                                        fecha = `${fecha[2]}-${fecha[1]}-${fecha[0]}`;
+                                                        let objetoFecha = new Date(fecha + 'T00:00:00');
+
+                                                        if ( citas[objetoFecha] ) {
+                                                                mostrarCita(citas[objetoFecha]);
                                                         } else {
-                                                                $('#formReservar').show();
-                                                                $('#formReservar').on('submit', function(e) {
-                                                                        e.preventDefault();
-                                                                        // Hacer validacion
-                                                                        fecha = fecha.split("/");
-                                                                        reservarCita($('#cliente').val(), $('#descripcion').val(), fechaFormateada);
-                                                                        $('#formReservar').trigger('reset');
-                                                                        $('#formReservar').off('submit');
-                                                                        $('#formReservar').hide();
-                                                                });
+                                                                mostrarReservar(fecha);
                                                         }
                                                 },
                                                 beforeShowDay: function(date) {
@@ -130,7 +118,7 @@ function resaltarCitas(_citas){
         // Iteramos por toda la lista que nos ha devuelto el servidor
         citas = [];
         _citas.forEach((cita) => {
-                citas[ new Date(cita.Fecha + 'T00:00:00') ] = new Date(cita.Fecha + 'T00:00:00').toString();
+                citas[ new Date(cita.Fecha + 'T00:00:00') ] = cita;
         });
 }
 
@@ -162,3 +150,61 @@ function liberarCita(fecha) {
                 });
 }
 
+// Función para mostrar la reserva
+function mostrarReservar(fecha) {
+        $('#formReservar').show();
+        $('#formReservar').on('submit', function(e) {
+                e.preventDefault();
+
+                if (validarReserva()) {
+                        reservarCita($('#cliente').val(), $('#descripcion').val(), fecha);
+
+                        $('#formReservar').trigger('reset');
+                        $('#formReservar').off('submit');
+                        $('#formReservar').hide();
+                }
+        });
+}
+
+// Función para mostrar la cita
+function mostrarCita(cita) {
+        $('#formBorrar').children('h3')[0].innerText = cita.Cliente;
+        $('#formBorrar').children('p')[0].innerText = cita.Descripcion;
+        $('#formBorrar').show();
+        $('#formBorrar').on('submit', function(e) {
+                e.preventDefault();
+                // Hacer validacion
+                liberarCita(cita.Fecha);
+                $('#formBorrar').off('submit');
+                $('#formBorrar').hide();
+        });
+}
+
+// Función para validar la reserva
+function validarReserva() {
+        let bandera = true;
+        let errores = $('#errores');
+        errores.empty();
+
+        // Cliente
+        if ($('#cliente').val() == "") {
+                bandera = false;
+                errores.append(
+                        $('<p>')
+                                .addClass('error')
+                                .text('No se ha proporcionado un cliente')
+                );
+        }
+
+        // Descripción
+        if ($('#descripcion').val() == "") {
+                bandera = false;
+                errores.append(
+                        $('<p>')
+                                .addClass('error')
+                                .text('No se ha proporcionado una descripción')
+                );
+        }
+
+        return bandera;
+}
