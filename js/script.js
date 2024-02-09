@@ -10,8 +10,9 @@ $(document).ready(() => {
                         $('#datepicker')
                                 .datepicker( 
                                         {
-                                                inline: true,
-                                                showOtherMonths: true,
+                                                inline: true, // Muestra el widget de forma "inline"
+                                                minDate: 0, // Define la fecha mínima a hoy, deshabilitando todas las anteriores
+                                                // Se ejecuta cuando el usuario selecciona una fecha y nos la proporciona
                                                 onSelect: function(fecha) {
                                                         // Escondemos los formularios
                                                         $('#formReservar').hide();
@@ -22,19 +23,26 @@ $(document).ready(() => {
                                                         fecha = `${fecha[2]}-${fecha[1]}-${fecha[0]}`;
                                                         let objetoFecha = new Date(fecha + 'T00:00:00');
 
+                                                        // Si esta fecha está contenida en las ya reservadas muestra su información
+                                                        // en caso contrario muestra el formulario para reservarla
                                                         if ( citas[objetoFecha] ) {
                                                                 mostrarCita(citas[objetoFecha]);
                                                         } else {
                                                                 mostrarReservar(fecha);
                                                         }
                                                 },
+                                                // Se ejecuta antes de mostrar cada día y nos proporciona este
                                                 beforeShowDay: function(date) {
+                                                        // Tenemos que devolver un array con la siguiente estructura: [habilitado, clases, título]
+                                                        // Si se encuentra en las reservadas le añadimos la clase "cogida"
                                                         if ( citas[date] ) {
                                                                 return [true, 'cogida', ''];
                                                         }
+                                                        // En caso contrario no hacemos nada
                                                         return [true, '', ''];
                                                 }
                                         },
+                                        // Definimos el idioma del widget
                                         $.datepicker.regional["es"]
                                 );
                 });
