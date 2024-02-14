@@ -66,15 +66,124 @@ button:focus, input[type="submit"]:focus, input[type="reset"]:focus, input[type=
 	display: none !important;
 }
 
+
+
+
+
+
+
+
+/*estilos del calendario*/
+
 .cogida span {
 	background: var(--aqua-dark) !important;
 }
 
-.ui-datepicker {
-	width: 700px;
-	height: 500px;
-	border: 1px solid;
+/*ocultar calendario*/
+#ui-datepicker-div{
+	display: none;
 }
+
+/* Estilos generales del calendario */
+.ui-datepicker {
+	position: absolute;
+	top: 200px;
+	left: 80px;
+    width: 500px;
+    height: 450px;
+    border: 1px solid;
+	border-radius: 15px;
+}
+
+/* Estilos del encabezado del calendario */
+.ui-datepicker .ui-datepicker-header {
+    text-align: center;
+	margin-top: 10px;
+}
+
+/* Botón de anterior */
+.ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
+    float: left;
+	background-image: url(../img/anterior.png);
+}
+
+/*Botón de siguiente*/
+.ui-datepicker .ui-datepicker-header .ui-datepicker-next {
+    float: right;
+	background-image: url(../img/avance-rapido.png);
+}
+
+/* Estilos de los íconos de navegación */
+.ui-datepicker .ui-datepicker-header .ui-datepicker-prev .ui-icon {
+    background-image: url(../img/anterior.png);
+}
+
+.ui-datepicker .ui-datepicker-header .ui-datepicker-next .ui-icon {
+    background-image: url(../img/avance-rapido.png);
+}
+
+/* Estilos del título del calendario */
+.ui-datepicker .ui-datepicker-header .ui-datepicker-title {
+ 	text-transform: uppercase;
+	font-size: 30px;
+}
+
+/* Estilos de los días en el calendario */
+.ui-datepicker .ui-datepicker-calendar a {
+    text-decoration: none;
+    text-align: left;
+}
+
+/* Estilos de las celdas del calendario */
+.ui-datepicker .ui-datepicker-calendar td {
+    border-bottom: 2px solid;
+}
+
+/* Estilos generales de la tabla */
+.ui-datepicker table {
+	border-collapse:collapse ;
+	margin-top: 20px;
+	width: 499px;
+	height: 385px;
+	text-align: center;
+}
+
+/* Estilos de las celdas de la tabla */
+.ui-datepicker .ui-datepicker-calendar thead tr th,
+.ui-datepicker .ui-datepicker-calendar tbody tr td {
+    font-size: 25px;
+	transition: 0.15s;
+}
+.ui-datepicker table thead tr,
+.ui-datepicker table tbody tr{
+	border-bottom:1px solid white;
+}
+.ui-datepicker table tbody tr:last-of-type{
+	border-bottom: 0px;
+}
+.ui-datepicker .ui-datepicker-calendar tbody tr td:hover {
+	background-color: white;
+	transition: 0.1s;
+}
+.ui-datepicker .ui-datepicker-calendar tbody tr td:hover a{
+	color: #000;
+}
+/* Estilos del texto dentro de las celdas del calendario */
+.ui-datepicker table tbody tr td span {
+  color: var(--fg-color);
+}
+
+.ui-datepicker table tbody tr td a {
+	color: var(--aqua-dark);
+}
+
+
+
+
+
+
+
+
 
 /* tareas */
 article#tareas {
