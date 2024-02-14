@@ -11,10 +11,17 @@
 		<script src='js/script.js'></script>
 	</head>
 	<body>
-		<article id="tareas">
-			<h1>CITAS MÉDICAS</h1>
-			<div id="datepicker"></div>
-		</article>
-	</article>
+		<div id="datepicker"></div>
+		<form id="formReservar">
+			<input type="text" id="cliente"/>
+			<textarea rows="5" id="descripcion"></textarea>
+			<input type="submit" value="Reservar"/>
+			<p id="errores"></p>
+		</form>
+		<form id="formBorrar">
+			<h3></h3>
+			<p></p>
+			<input type="submit" value="Borrar">
+		</form>
 	</body>
 </html>
