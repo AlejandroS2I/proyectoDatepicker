@@ -66,15 +66,7 @@ button:focus, input[type="submit"]:focus, input[type="reset"]:focus, input[type=
 	display: none !important;
 }
 
-
-
-
-
-
-
-
 /*estilos del calendario*/
-
 .cogida span {
 	background: var(--aqua-dark) !important;
 }
