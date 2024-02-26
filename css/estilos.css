@@ -104,7 +104,7 @@ button:focus, input[type="submit"]:focus, input[type="reset"]:focus, input[type=
 /* Botón de anterior */
 .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
     float: left;
-	background-image: url(../img/anterior.png);
+	background-image: url("../img/anterior.png");
 }
 
 /*Botón de siguiente*/

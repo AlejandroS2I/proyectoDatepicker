@@ -7,6 +7,11 @@ var configDatepicker = {
                 // Escondemos los formularios
                 $('#formReservar').hide();
                 $('#formBorrar').hide();
+                // Borramos los eventos del formulario anterior
+                $('#formReservar').off('submit');
+                $('#formBorrar').off('submit');
+                // Borramos los errores del formulario anterior
+                $('#errores').empty();
 
                 // Tratamos la fecha
                 fecha = fecha.split("/");
